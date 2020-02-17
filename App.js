@@ -5,15 +5,18 @@ import { enableScreens } from "react-native-screens";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import productsReducer from "./store/reducers/products";
+import cartReducer from "./store/reducers/cart";
 import ShopNavigator from "./navigation/ShopNavigator";
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 enableScreens();
 
 const rootReducer = combineReducers({
-	products: productsReducer
+	products: productsReducer,
+	cart : cartReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer /*, composeWithDevTools()*/);
 
 const fetchFonts = () => {
 	return Font.loadAsync({
