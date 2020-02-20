@@ -40,10 +40,12 @@ export default (state = initialState, action) => {
             let updatedCartItems;
 
 			if (currentQty > 1) {
+				console.log('try to reduce')
 				// reduce 1
 				const updatedCartItem = new CartItem(
 					selectedCartItem.quantity - 1,
 					selectedCartItem.productPrice,
+					selectedCartItem.productTitle,
 					selectedCartItem.sum - selectedCartItem.productPrice
                 );
                 

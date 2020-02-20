@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import Colors from "../../constants/Colors";
 import CartItem from "../../components/shop/CartItem";
-import * as cartActions from '../../store/actions/cart';
+import * as cartActions from "../../store/actions/cart";
+import * as ordersActions from "../../store/actions/order";
 
 const CartScreen = props => {
 	const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const CartScreen = props => {
 			});
 		}
 
-		return transformedCartItems;
+		return transformedCartItems.sort((a, b) =>
+			a.productId > b.productId ? 1 : -1
+		);
 	});
 
 	return (
@@ -35,6 +38,9 @@ const CartScreen = props => {
 					title="Order Now"
 					color={Colors.accent}
 					disabled={cartItems.length === 0}
+					onPress={() => {
+						dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
+					}}
 				/>
 			</View>
 
@@ -85,5 +91,10 @@ const styles = StyleSheet.create({
 		color: Colors.primary
 	}
 });
+
+CartScreen.navigationOptions = {
+    headerTitle: 'Your Cart'
+};
+
 
 export default CartScreen;
