@@ -53,6 +53,7 @@ const CartScreen = props => {
 					<CartItem
 						quantity={itemData.item.quantity}
 						title={itemData.item.productTitle}
+						deletable={true}
 						onRemove={() => {
 							dispatch(cartActions.removeFromCart(itemData.item.productId));
 						}}
@@ -93,8 +94,7 @@ const styles = StyleSheet.create({
 });
 
 CartScreen.navigationOptions = {
-    headerTitle: 'Your Cart'
+	headerTitle: "Your Cart"
 };
-
 
 export default CartScreen;
