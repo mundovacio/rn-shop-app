@@ -17,7 +17,7 @@ const CartItem = props => {
 			</Text>
 
 			<View style={styles.itemData}>
-				<Text style={styles.mainText}>${props.amount.toFixed(2)}</Text>
+				<Text style={styles.mainText}>${Math.round(props.amount.toFixed(2) * 100) / 100}</Text>
 				{props.deletable && (
 					<TouchableOpacity
 						onPress={props.onRemove}
