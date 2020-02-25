@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import ProductsOverviewScreen from "../screens/shop/ProductsOverviewScreen";
@@ -9,6 +9,7 @@ import CartScreen from "../screens/shop/CartScreen";
 import OrdersScreen from "../screens/shop/OrdersScreen";
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { Ionicons } from "@expo/vector-icons";
+import UserProductScreen from "../screens/user/UserProducstScreen";
 
 const defaultNavOptions = {
 	headerStyle: {
@@ -61,10 +62,29 @@ const OrdersNavigator = createStackNavigator(
 	}
 );
 
+const AdminNavigator = createStackNavigator(
+	{
+		userProducts: UserProductScreen
+	},
+	{
+		navigationOptions: {
+			drawerIcon: drawerConfig => (
+				<Ionicons
+					name={Platform.OS === "android" ? "md-create" : "ios-create"}
+					size={23}
+					color={drawerConfig.tintColor}
+				/>
+			)
+		},
+		defaultNavigationOptions: defaultNavOptions
+	}
+);
+
 const shopNavigator = createDrawerNavigator(
 	{
 		Products: ProductsNavigator,
-		Orders: OrdersNavigator
+		Orders: OrdersNavigator,
+		Admin: AdminNavigator
 	},
 	{
 		contentOptions: {

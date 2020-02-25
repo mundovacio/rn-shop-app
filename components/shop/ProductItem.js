@@ -21,7 +21,7 @@ const ProductItem = props => {
 	return (
 		<View style={styles.product}>
 			<View style={styles.touchable}>
-				<TouchableCmp onPress={props.onViewDetail} useForeground>
+				<TouchableCmp onPress={props.onSelected} useForeground>
 					<View>
 						<View style={styles.imageContainer}>
 							<Image style={styles.image} source={{ uri: props.imageUrl }} />
@@ -31,20 +31,9 @@ const ProductItem = props => {
 							<Text style={styles.price}>${props.price.toFixed(2)}</Text>
 						</View>
 						<View style={styles.actions}>
-							<View style={styles.buttonWrap}>
-								<Button
-									title="View Details"
-									onPress={props.onViewDetail}
-									color={Colors.primary}
-								/>
-							</View>
-							<View style={styles.buttonWrap}>
-								<Button
-									title="To Cart"
-									onPress={props.onAddToCard}
-									color={Colors.primary}
-								/>
-							</View>
+
+							{props.children}
+							
 						</View>
 					</View>
 				</TouchableCmp>
