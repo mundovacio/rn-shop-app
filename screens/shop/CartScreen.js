@@ -46,9 +46,7 @@ const CartScreen = props => {
 
 			<FlatList
 				data={cartItems}
-				keyExtractor={item => {
-					item.productId;
-				}}
+				keyExtractor={item => item.productId}
 				renderItem={itemData => (
 					<CartItem
 						quantity={itemData.item.quantity}

@@ -13,18 +13,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case DELETE_PRODUCT:
-			return {
-				...state,
-				userProducts: state.userProducts.filter(
-					product => product.id !== action.pid
-				),
-				availableProducts: state.availableProducts.filter(
-					product => product.id !== action.pid
-				)
-			};
-
-		case UPDATE_PRODUCT:
+		case CREATE_PRODUCT:
 			const newProduct = new Product(
 				new Date().toString(),
 				"u1",
@@ -40,7 +29,7 @@ export default (state = initialState, action) => {
 				userProducts: state.userProducts.concat(newProduct)
 			};
 
-		case CREATE_PRODUCT:
+		case UPDATE_PRODUCT:
 			const productIndex = state.userProducts.findIndex(
 				prod => prod.id === action.pid
 			);
@@ -65,8 +54,17 @@ export default (state = initialState, action) => {
 				availableProducts: updatedAvailableProducts,
 				userProducts: updatedUserProducts
 			};
-
-		default:
-			return state;
+		case DELETE_PRODUCT:
+			return {
+				...state,
+				userProducts: state.userProducts.filter(
+					product => product.id !== action.pid
+				),
+				availableProducts: state.availableProducts.filter(
+					product => product.id !== action.pid
+				)
+			};
 	}
+
+	return state;
 };
