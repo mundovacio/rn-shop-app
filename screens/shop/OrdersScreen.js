@@ -1,13 +1,11 @@
 import React from "react";
 import {
-	View,
-	Text,
 	StyleSheet,
 	FlatList,
 	Button,
 	Platform
 } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../../components/UI/headerButton";
 import OrderItem from "../../components/shop/OrderItem";
