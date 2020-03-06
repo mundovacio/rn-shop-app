@@ -1,13 +1,9 @@
 import React from "react";
-import {
-	StyleSheet,
-	FlatList,
-	Button,
-	Platform
-} from "react-native";
+import { FlatList, Text, Platform } from "react-native";
 import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import CustomHeaderButton from "../../components/UI/headerButton";
+
+import HeaderButton from "../../components/UI/HeaderButton";
 import OrderItem from "../../components/shop/OrderItem";
 
 const OrdersScreen = props => {
@@ -28,18 +24,12 @@ const OrdersScreen = props => {
 	);
 };
 
-const styles = StyleSheet.create({
-	screen: {
-		margin: 20
-	}
-});
-
 OrdersScreen.navigationOptions = navData => {
 	return {
-		headerTitle: "Your orders",
+		headerTitle: "Your Orders",
 		headerLeft: () => {
 			return (
-				<HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+				<HeaderButtons HeaderButtonComponent={HeaderButton}>
 					<Item
 						title="Menu"
 						iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}

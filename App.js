@@ -4,10 +4,11 @@ import { AppLoading } from "expo";
 import { enableScreens } from "react-native-screens";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import productsReducer from "./store/reducers/products";
-import cartReducer from "./store/reducers/cart";
-import ordersReducer from "./store/reducers/order";
-import ShopNavigator from "./navigation/ShopNavigator";
+
+import productsReducer from './store/reducers/products';
+import cartReducer from './store/reducers/cart';
+import ordersReducer from './store/reducers/orders';
+import ShopNavigator from './navigation/ShopNavigator';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
 enableScreens();

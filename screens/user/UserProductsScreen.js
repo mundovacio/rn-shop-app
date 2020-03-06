@@ -1,13 +1,14 @@
 import React from "react";
-import { StyleSheet, Platform, FlatList, Button, Alert } from "react-native";
-import ProductItem from "../../components/shop/ProductItem";
+import { FlatList, Button, Platform, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import CustomHeaderButton from "../../components/UI/headerButton";
-import Colors from "../../constants/Colors";
-import * as productActions from "../../store/actions/products";
 
-const UserProductScreen = props => {
+import HeaderButton from "../../components/UI/HeaderButton";
+import ProductItem from "../../components/shop/ProductItem";
+import Colors from "../../constants/Colors";
+import * as productsActions from "../../store/actions/products";
+
+const UserProductsScreen = props => {
 	const userProducts = useSelector(state => state.products.userProducts);
 	const dispatch = useDispatch();
 
@@ -22,7 +23,7 @@ const UserProductScreen = props => {
 				text: "Yes",
 				style: "destructive",
 				onPress: () => {
-					dispatch(productActions.deleteProduct(id));
+					dispatch(productsActions.deleteProduct(id));
 				}
 			}
 		]);
@@ -34,24 +35,24 @@ const UserProductScreen = props => {
 			keyExtractor={item => item.id}
 			renderItem={itemData => (
 				<ProductItem
-					imageUrl={itemData.item.imageUrl}
+					image={itemData.item.imageUrl}
 					title={itemData.item.title}
 					price={itemData.item.price}
-					onSelected={() => {
+					onSelect={() => {
 						editProductHandler(itemData.item.id);
 					}}
 				>
 					<Button
+						color={Colors.primary}
 						title="Edit"
 						onPress={() => {
 							editProductHandler(itemData.item.id);
 						}}
-						color={Colors.primary}
 					/>
 					<Button
+						color={Colors.primary}
 						title="Delete"
 						onPress={deleteHandler.bind(this, itemData.item.id)}
-						color={Colors.primary}
 					/>
 				</ProductItem>
 			)}
@@ -59,14 +60,12 @@ const UserProductScreen = props => {
 	);
 };
 
-const styles = StyleSheet.create({});
-
-UserProductScreen.navigationOptions = navData => {
+UserProductsScreen.navigationOptions = navData => {
 	return {
-		headerTitle: "Your products",
+		headerTitle: "Your Products",
 		headerLeft: () => {
 			return (
-				<HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+				<HeaderButtons HeaderButtonComponent={HeaderButton}>
 					<Item
 						title="Menu"
 						iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
@@ -79,7 +78,7 @@ UserProductScreen.navigationOptions = navData => {
 		},
 		headerRight: () => {
 			return (
-				<HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+				<HeaderButtons HeaderButtonComponent={HeaderButton}>
 					<Item
 						title="Add"
 						iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
@@ -93,4 +92,4 @@ UserProductScreen.navigationOptions = navData => {
 	};
 };
 
-export default UserProductScreen;
+export default UserProductsScreen;
